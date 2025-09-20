@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="brand"><a routerLink="/">AcadZone</a></div>
+
+  <div class="nav-links">
+    <a routerLink="/student" *ngIf="loggedUser?.role === 'student'">Student</a>
+    <a routerLink="/teacher" *ngIf="loggedUser?.role === 'teacher'">Teacher</a>
+    <a routerLink="/admin"   *ngIf="loggedUser?.role === 'admin'">Admin</a>
+  </div>
+
+  <div class="nav-right">
+    <span *ngIf="loggedUser">Hi, {{ loggedUser.name }}</span>
+    <button (click)="onLogOut()">Logout</button>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
