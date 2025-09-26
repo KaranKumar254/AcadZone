@@ -1,29 +1,48 @@
-<div class="dashboard-container">
-  <h1>👨‍🏫 Teacher Dashboard</h1>
+<!-- Top Navbar -->
+<div class="top-navbar">
+  <button class="menu-btn" (click)="toggleSidebar()">☰ Menu</button>
+  <span class="navbar-title">👨‍🏫 Teacher Dashboard</span>
+  <span class="username">Hello, {{ username }}</span>
+  <button class="logout-btn" (click)="logout()">Logout</button>
+</div>
 
-  <div class="card-container" role="list">
-    <!-- Manage Attendance -->
-    <a class="card" role="listitem" routerLink="/teacher/manage-attendance" aria-label="Manage Attendance">
-      <span class="icon" style="font-size:48px;display:block;">📋</span>
-      <h3 style="font-size:13px;margin:6px 0 0;">Manage Attendance</h3>
-    </a>
+<!-- Sidebar Menu -->
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <a routerLink="/teacher/manage-attendance">📋 Manage Attendance</a>
+  <a routerLink="/teacher/manage-class">🏫 Manage Class</a>
+  <a routerLink="/teacher/manage-exam">📝 Manage Exam</a>
+  <a routerLink="/teacher/upload-books">📤 Upload Books</a>
+</div>
 
-    <!-- Manage Class -->
-    <a class="card" role="listitem" routerLink="/teacher/manage-class" aria-label="Manage Class">
-      <span class="icon" style="font-size:48px;display:block;">🏫</span>
-      <h3 style="font-size:13px;margin:6px 0 0;">Manage Class</h3>
-    </a>
+<!-- Main Content -->
+<div class="main-content">
+  <div class="dashboard-container">
+    <h1>👨‍🏫 Teacher Dashboard</h1>
 
-    <!-- Manage Exam -->
-    <a class="card" role="listitem" routerLink="/teacher/manage-exam" aria-label="Manage Exam">
-      <span class="icon" style="font-size:48px;display:block;">📝</span>
-      <h3 style="font-size:13px;margin:6px 0 0;">Manage Exam</h3>
-    </a>
+    <div class="card-container" role="list">
+      <!-- Manage Attendance -->
+      <a class="card" role="listitem" routerLink="/teacher/manage-attendance" aria-label="Manage Attendance">
+        <span class="icon">📋</span>
+        <h3>Manage Attendance</h3>
+      </a>
 
-    <!-- Upload Books -->
-    <a class="card" role="listitem" routerLink="/teacher/upload-books" aria-label="Upload Books">
-      <span class="icon" style="font-size:48px;display:block;">📤</span>
-      <h3 style="font-size:13px;margin:6px 0 0;">Upload Books</h3>
-    </a>
+      <!-- Manage Class -->
+      <a class="card" role="listitem" routerLink="/teacher/manage-class" aria-label="Manage Class">
+        <span class="icon">🏫</span>
+        <h3>Manage Class</h3>
+      </a>
+
+      <!-- Manage Exam -->
+      <a class="card" role="listitem" routerLink="/teacher/manage-exam" aria-label="Manage Exam">
+        <span class="icon">📝</span>
+        <h3>Manage Exam</h3>
+      </a>
+
+      <!-- Upload Books -->
+      <a class="card" role="listitem" routerLink="/teacher/upload-books" aria-label="Upload Books">
+        <span class="icon">📤</span>
+        <h3>Upload Books</h3>
+      </a>
+    </div>
   </div>
 </div>

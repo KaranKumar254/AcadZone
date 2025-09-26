@@ -1,3 +1,107 @@
+/* =======================
+   Top Navbar
+   ======================= */
+.top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #8e44ad; /* Admin dashboard color */
+  color: white;
+  padding: 10px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-btn:hover {
+  color: #ddd;
+}
+
+.navbar-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.username {
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  border: none;
+  background-color: #c0392b; /* Logout button color */
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: #e74c3c;
+  transform: scale(1.05);
+}
+
+/* =======================
+   Sidebar Menu
+   ======================= */
+.sidebar {
+  position: fixed;
+  top: 50px;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #2c3e50;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.sidebar a:hover {
+  background-color: #1a252f;
+}
+
+/* =======================
+   Main Content
+   ======================= */
+.main-content {
+  padding: 20px;
+  margin-left: 0;
+  margin-top: 60px; /* Space for fixed navbar */
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.open ~ .main-content {
+  margin-left: 250px;
+}
+
+/* =======================
+   Dashboard Cards
+   ======================= */
 .dashboard-container {
   padding: 30px;
   text-align: center;
@@ -5,33 +109,41 @@
 }
 
 h1 {
-  color: #27ae60;
+  color: #8e44ad; /* Admin dashboard header color */
+  font-size: 28px;
   margin-bottom: 30px;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
 }
 
 .card {
   background: #ffffff;
   border-radius: 12px;
-  padding: 25px;
+  padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  background: #27ae60;
-  color: #fff;
+  background: #8e44ad;
+  color: white;
 }
 
 .icon {
-  font-size: 2rem;
+  font-size: 6rem;
   margin-bottom: 10px;
   display: block;
+}
+
+h3 {
+  font-size: 16px;
+  margin: 8px 0 0;
 }

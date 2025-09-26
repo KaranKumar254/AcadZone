@@ -1,72 +1,74 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css']
 })
 export class Login {
   activeForm: 'register' | 'login' = 'register';
   registerObj: registerModel = new registerModel();
   loginObj: loginModel = new loginModel();
 
-  constructor(private snackbar: MatSnackBar, private router: Router) { };
+  constructor(private snackbar: MatSnackBar, private router: Router) { }
 
   toggleForm(form: 'register' | 'login') {
     this.activeForm = form;
   }
 
   registerForm() {
-    debugger;
     const localusers = localStorage.getItem('users');
     if (localusers != null) {
       const users = JSON.parse(localusers);
       users.push(this.registerObj);
       localStorage.setItem('users', JSON.stringify(users));
-
     } else {
       const users = [];
       users.push(this.registerObj);
       localStorage.setItem('users', JSON.stringify(users));
     }
-    this.snackbar.open('User register successfully', 'close');
+    this.snackbar.open('User registered successfully', 'close');
   }
+
   loginForm() {
-    const localusers = localStorage.getItem('users');
-    if (localusers != null) {
-      const users = JSON.parse(localusers);
-      const isUserExist = users.find(
-        (user: registerModel) =>
-          user.email == this.loginObj.email &&
-          user.password == this.loginObj.password &&
-          user.role == this.loginObj.role
-      );
+  const localusers = localStorage.getItem('users');
+  if (localusers != null) {
+    const users = JSON.parse(localusers);
+    const isUserExist = users.find(
+      (user: registerModel) =>
+        user.email == this.loginObj.email &&
+        user.password == this.loginObj.password &&
+        user.role == this.loginObj.role
+    );
 
-      if (isUserExist != undefined) {
-        this.snackbar.open('Login SuccessFully', 'Close');
-        localStorage.setItem('loggedUser', JSON.stringify(isUserExist));
-        if (isUserExist.role === 'student') {
-          this.router.navigateByUrl('/student');
-        } else if (isUserExist.role === 'teacher') {
-          this.router.navigateByUrl('/teacher');
-        } else if (isUserExist.role === 'admin') {
-          this.router.navigateByUrl('/admin');
-        }
+    if (isUserExist != undefined) {
+      this.snackbar.open('Login Successfully', 'Close');
 
-      } else {
-        this.snackbar.open('Email, Password or Role is incorrect', 'Close');
+      // Save user details and username
+      localStorage.setItem('loggedUser', JSON.stringify(isUserExist));
+      localStorage.setItem('username', isUserExist.name);
+
+      if (isUserExist.role === 'student') {
+        this.router.navigateByUrl('/student');
+      } else if (isUserExist.role === 'teacher') {
+        this.router.navigateByUrl('/teacher');
+      } else if (isUserExist.role === 'admin') {
+        this.router.navigateByUrl('/admin');
       }
+    } else {
+      this.snackbar.open('Email, Password or Role is incorrect', 'Close');
     }
   }
+}
 
 }
+
 export class registerModel {
   name: string;
   email: string;
@@ -89,5 +91,4 @@ export class loginModel {
     this.password = "";
     this.role = "student";
   }
-
 }
